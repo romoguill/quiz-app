@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family:'Karla', sans-serif;
+}
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('./images/blob 4.png'), url('./images/blob\ 5.png');
+  background-position: bottom left,  top right;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.WelcomePage {
+  text-align: center;
+  justify-content: center;
+}
+
+.WelcomePage h2 {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+
+}
+
+.btn {
+  border: none;
+  background-color: #4D5B9E;
+  padding: 1em 3.5em;
+  color: white;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #6171c4;
+}
