@@ -1,16 +1,17 @@
 import Answer from './Answer';
 
-function Quiz() {
+function Quiz(props) {
+  const { question, correctAnswer, incorrectAnswers } = props.quiz;
+
+  const posibleAnswers = [correctAnswer, ...incorrectAnswers].sort();
+
+  const answersElements = posibleAnswers.map((answer) => (
+    <Answer value={answer} />
+  ));
   return (
     <section className="Quiz">
-      <h3 className="question">How would one say goodbye in Spanish?</h3>
-      <div className="posible_answers">
-        <Answer />
-        <Answer />
-        <Answer />
-        <Answer />
-        <Answer />
-      </div>
+      <h3 className="question">{question}</h3>
+      <div className="posible_answers">{answersElements}</div>
       <hr />
     </section>
   );

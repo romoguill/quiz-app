@@ -1,7 +1,7 @@
-function Answer() {
+function Answer(props) {
   return (
     <div className="Answer">
-      <p>Adios</p>
+      <p>{props.value}</p>
     </div>
   );
 }
