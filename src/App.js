@@ -12,9 +12,17 @@ function App() {
     setIsPlaying(true);
   }
 
+  function endGame() {
+    setIsPlaying(false);
+  }
+
   return (
     <div className="App">
-      {isPlaying ? <QuizPage /> : <WelcomePage startGame={startGame} />}
+      {isPlaying ? (
+        <QuizPage endGame={endGame} />
+      ) : (
+        <WelcomePage startGame={startGame} />
+      )}
     </div>
   );
 }

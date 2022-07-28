@@ -5,27 +5,30 @@ import { nanoid } from 'nanoid';
 import { useState, useEffect, CSSProperties } from 'react';
 import MoonLoader from 'react-spinners/MoonLoader';
 
-function QuizPage() {
+function QuizPage(props) {
   const API_URL = 'https://opentdb.com/api.php?amount=5';
 
   const [quizzes, setQuizzes] = useState([]);
   const [showScore, setShowScore] = useState(false);
   const [isLoadingQuizzes, setIsLoadingQuizzes] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   //  Set the selectedAnswer property to the quiz answer value that was selected
   function selectAnswer(quizId, answerId) {
-    setQuizzes((prevQuizes) =>
-      prevQuizes.map((quiz) => {
-        if (quiz.id === quizId) {
-          return {
-            ...quiz,
-            selectedAnswer: quiz.allAnswers[answerId],
-          };
-        } else {
-          return { ...quiz };
-        }
-      })
-    );
+    if (!isGameOver) {
+      setQuizzes((prevQuizes) =>
+        prevQuizes.map((quiz) => {
+          if (quiz.id === quizId) {
+            return {
+              ...quiz,
+              selectedAnswer: quiz.allAnswers[answerId],
+            };
+          } else {
+            return { ...quiz };
+          }
+        })
+      );
+    }
   }
 
   // All quizes must be guessed
@@ -47,7 +50,10 @@ function QuizPage() {
   }
 
   function displayScore() {
-    areAllQuizesAnswered() && setShowScore(true);
+    if (areAllQuizesAnswered()) {
+      setShowScore(true);
+      setIsGameOver(true);
+    }
   }
 
   useEffect(() => {
@@ -83,17 +89,27 @@ function QuizPage() {
 
   return (
     <main className="QuizPage">
-      {
-        isLoadingQuizzes ? <MoonLoader color="#293264" /> : quizzesElements
-        // <div className="quiz--control">
-        //   <button className="btn btn-secondary" onClick={displayScore}>
-        //     Check answers
-        //   </button>
-        //   {showScore && (
-        //     <p className="score">{`You scored ${getGameScore()}/5 correct answers`}</p>
-        //   )}
-        // </div>
-      }
+      {isLoadingQuizzes ? (
+        <MoonLoader color="#293264" />
+      ) : (
+        <>
+          {quizzesElements}
+          <div className="quiz-control">
+            {showScore ? (
+              <>
+                <p className="score">{`You scored ${getGameScore()}/5 correct answers`}</p>
+                <button className="btn btn-secondary" onClick={props.endGame}>
+                  Play again
+                </button>
+              </>
+            ) : (
+              <button className="btn btn-secondary" onClick={displayScore}>
+                Check answers
+              </button>
+            )}
+          </div>
+        </>
+      )}
     </main>
   );
 }

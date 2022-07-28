@@ -34,17 +34,6 @@ body {
   background-repeat: no-repeat, no-repeat;
 }
 
-.WelcomePage {
-  text-align: center;
-  justify-content: center;
-}
-
-.WelcomePage h2 {
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-
-}
-
 .btn {
   border: none;
   background-color: #4D5B9E;
@@ -58,6 +47,22 @@ body {
 .btn:hover {
   background-color: #6171c4;
 }
+
+.WelcomePage {
+  text-align: center;
+  justify-content: center;
+}
+
+.WelcomePage h2 {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+
+}
+
+.Quiz:last-of-type{
+  margin-bottom: 4rem;
+}
+
 
 .question {
   margin-top: 2rem;
