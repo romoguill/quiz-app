@@ -2,13 +2,15 @@ import Quiz from './Quiz';
 import parseCorrectly from '../util';
 
 import { nanoid } from 'nanoid';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 function QuizPage() {
   const API_URL = 'https://opentdb.com/api.php?amount=5';
 
   const [quizzes, setQuizzes] = useState([]);
   const [showScore, setShowScore] = useState(false);
+  const [isLoadingQuizzes, setIsLoadingQuizzes] = useState(true);
 
   //  Set the selectedAnswer property to the quiz answer value that was selected
   function selectAnswer(quizId, answerId) {
@@ -65,6 +67,7 @@ function QuizPage() {
             selectedAnswer: null,
           }))
         );
+        setIsLoadingQuizzes(false);
       });
   }, []);
 
@@ -80,15 +83,17 @@ function QuizPage() {
 
   return (
     <main className="QuizPage">
-      {quizzesElements}
-      <div className="quiz--control">
-        <button className="btn btn-secondary" onClick={displayScore}>
-          Check answers
-        </button>
-        {showScore && (
-          <p className="score">{`You scored ${getGameScore()}/5 correct answers`}</p>
-        )}
-      </div>
+      {
+        isLoadingQuizzes ? <MoonLoader color="#293264" /> : quizzesElements
+        // <div className="quiz--control">
+        //   <button className="btn btn-secondary" onClick={displayScore}>
+        //     Check answers
+        //   </button>
+        //   {showScore && (
+        //     <p className="score">{`You scored ${getGameScore()}/5 correct answers`}</p>
+        //   )}
+        // </div>
+      }
     </main>
   );
 }
