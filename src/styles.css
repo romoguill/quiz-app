@@ -96,6 +96,22 @@ body {
   background-color: #D6DBF5;
 }
 
+.quiz-control { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.quiz-control p {
+  font-size: 2rem;
+}
+
+.quiz-control .btn {
+  padding: 1em 3em;
+}
+
 @media screen and (max-width: 500px) {
   html {
     font-size: 50%;
