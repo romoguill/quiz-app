@@ -5,6 +5,8 @@ function parseCorrectly(str) {
     ['"', /&quot;/g],
     ["'", /&apos;/g],
     ["'", /&#039;/g],
+    ['“', /&ldquo;/g],
+    ['”', /&rdquo;/g],
     ['&', /&amp;/g],
     ['<', /&lt;/g],
     ['>', /&gt;/g],

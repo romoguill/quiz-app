@@ -80,3 +80,7 @@ body {
 .Answer:hover {
   background-color: #D6DBF5;
 }
+
+.selected {
+  background-color: #D6DBF5;
+}

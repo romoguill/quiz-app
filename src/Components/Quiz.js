@@ -1,13 +1,19 @@
 import Answer from './Answer';
 
 function Quiz(props) {
-  const { question, correctAnswer, incorrectAnswers } = props.quiz;
+  const { question, allAnswers, id, selectedAnswer } = props.quiz;
 
-  const posibleAnswers = [correctAnswer, ...incorrectAnswers].sort();
-
-  const answersElements = posibleAnswers.map((answer) => (
-    <Answer value={answer} />
+  const answersElements = allAnswers.map((answer, index) => (
+    <Answer
+      id={index}
+      key={index}
+      value={answer}
+      quizId={id}
+      selectAnswer={props.selectAnswer}
+      selectedAnswer={selectedAnswer}
+    />
   ));
+
   return (
     <section className="Quiz">
       <h3 className="question">{question}</h3>
